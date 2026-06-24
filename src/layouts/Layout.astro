@@ -1,0 +1,70 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = "mateoroldos", description = "Personal website of mateoroldos, software designer and builder." } = Astro.props;
+---
+
+<html lang="en" class="dark">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		<ClientRouter />
+	</head>
+	<body class="min-h-svh bg-background text-foreground antialiased">
+		<main class="mx-auto flex min-h-svh w-full max-w-2xl flex-col px-6 py-16 sm:py-24">
+			<slot />
+			<Footer />
+		</main>
+	</body>
+</html>
+
+<style is:global>
+	@keyframes subtleFadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(3px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes subtleFadeOut {
+		from {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		to {
+			opacity: 0;
+			transform: translateY(3px);
+		}
+	}
+
+	::view-transition-old(root) {
+		animation: subtleFadeOut 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+	}
+
+	::view-transition-new(root) {
+		animation: subtleFadeIn 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		::view-transition-old(root),
+		::view-transition-new(root) {
+			animation: none;
+		}
+	}
+</style>

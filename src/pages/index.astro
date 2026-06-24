@@ -1,17 +1,216 @@
 ---
-import "../styles/global.css";
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+const posts = (await getCollection("blog")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const projects = [
+	{
+		name: "md.uy",
+		description: "A minimal peer-to-peer Markdown editor that syncs using WebRTC.",
+		href: "https://md.uy/",
+	},
+	{
+		name: "tokenbase",
+		description: "A design token manager for turning visual decisions into exportable code.",
+		href: "https://token-base.com/",
+	},
+	{
+		name: "gitboard",
+    description: "An interactive canvas for making GitHub repos feel less static.",
+		href: "https://gitboard-app.netlify.app/",
+	},
+];
+
+const workspace = [
+	{
+		name: "dotfiles",
+		description: "My terminal, nvim, and machine setup.",
+		href: "https://github.com/mateoroldos/dotfiles",
+	},
+	{
+		name: "agents",
+		description: "Personal collection of prompts and skills.",
+		href: "https://github.com/mateoroldos/agents",
+	},
+];
+
+const experience = [
+	{
+		name: "Independent work",
+		years: "2026-now",
+		description: "Taking time to dive deep into Effect.ts and AI while building tools for agents, visual tutorials, and Discord communities.",
+	},
+	{
+		name: "Numinous Labs",
+		years: "2025",
+		description: "Designed and built AI tools for prediction markets and decision workflows.",
+		href: "https://numinouslabs.io/",
+	},
+	{
+		name: "Flipzen",
+		years: "2024",
+		description: "Built product surfaces for AI-assisted compliance work.",
+		href: "https://flipzen.com/",
+	},
+	{
+		name: "Emerald Labs",
+		years: "2022-2024",
+		description: "Joined my main client full time to build education and tooling around Flow Blockchain.",
+		href: "https://academy.ecdao.org/",
+	},
+	{
+		name: "Independent developer",
+		years: "2019-2022",
+		description: "Started studying web development and freelancing for local companies.",
+	},
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+	<header class="space-y-8">
+		<a
+			href="/"
+			class="inline-flex size-14 overflow-hidden rounded-full border border-border bg-card"
+			aria-label="mateoroldos home"
+		>
+			<img
+				src="/mateoroldos.jpg"
+				alt="mateoroldos"
+				class="size-full object-cover"
+				width="60"
+				height="60"
+			/>
+		</a>
+
+		<div class="space-y-3">
+			<h1 class="font-heading text-lg font-medium tracking-tight text-foreground">
+				Mateo Roldos
+			</h1>
+      <p class="max-w-xl text-sm leading-6 text-muted-foreground">
+        Software developer from Montevideo, Uruguay.
+      </p>
+			<p class="max-w-xl text-sm leading-6 text-foreground">
+        Self-taught developer with a background in industrial design. I build for the web with a sharp eye for product and design. When I'm not coding, I'm playing football.
+			</p>
+		</div>
+	</header>
+
+	<section class="mt-14 space-y-4" aria-labelledby="blog-heading">
+		<h2 id="blog-heading" class="font-heading text-lg font-medium tracking-tight">Blog</h2>
+
+		<ul class="divide-y divide-border border-y border-border">
+			{posts.map((post) => (
+				<li>
+				<a href={`/blog/${post.id}/`} class="group block py-3 text-sm">
+					<span class="space-y-1.5">
+						<span class="block font-medium text-foreground group-hover:underline group-hover:underline-offset-4">
+							{post.data.title}
+						</span>
+						<time datetime={post.data.pubDate.toISOString()} class="block text-xs text-muted-foreground">
+							{post.data.pubDate.toLocaleDateString("en", {
+								month: "short",
+								day: "2-digit",
+								year: "numeric",
+							})}
+						</time>
+						<span class="block leading-6 text-muted-foreground">{post.data.description}</span>
+					</span>
+				</a>
+				</li>
+			))}
+		</ul>
+	</section>
+
+	<section class="mt-14 space-y-4" aria-labelledby="projects-heading">
+		<div class="space-y-1">
+			<h2 id="projects-heading" class="font-heading text-lg font-medium tracking-tight">Open Source</h2>
+			<p class="text-sm leading-6 text-muted-foreground">
+				Some open source projects I feel proud of.
+			</p>
+		</div>
+
+		<ul class="divide-y divide-border border-y border-border">
+			{projects.map((project) => (
+				<li>
+					<a
+						href={project.href}
+						class="group flex items-start justify-between gap-6 py-3 text-sm"
+						target="_blank"
+						rel="noreferrer"
+					>
+						<span class="space-y-1.5">
+							<span class="block font-medium text-foreground group-hover:underline group-hover:underline-offset-4">
+								{project.name}
+							</span>
+							<span class="block leading-6 text-muted-foreground">{project.description}</span>
+						</span>
+					</a>
+				</li>
+			))}
+		</ul>
+	</section>
+
+	<section class="mt-14 space-y-4" aria-labelledby="experience-heading">
+		<h2 id="experience-heading" class="font-heading text-lg font-medium tracking-tight">Experience</h2>
+
+		<ul class="divide-y divide-border border-y border-border">
+			{experience.map((item) => (
+				<li>
+					<a
+						href={item.href ?? undefined}
+						class:list={["block py-3 text-sm", item.href && "group"]}
+						target={item.href ? "_blank" : undefined}
+						rel={item.href ? "noreferrer" : undefined}
+					>
+						<span class="space-y-1.5">
+							<span
+								class:list={[
+									"block font-medium text-foreground",
+									item.href && "group-hover:underline group-hover:underline-offset-4",
+								]}
+							>
+								{item.name}
+							</span>
+							<span class="block text-xs text-muted-foreground">
+								{item.years}
+							</span>
+							<span class="block leading-6 text-muted-foreground">{item.description}</span>
+						</span>
+					</a>
+				</li>
+			))}
+		</ul>
+	</section>
+
+	<section class="mt-14 space-y-4" aria-labelledby="workspace-heading">
+		<div class="space-y-1">
+			<h2 id="workspace-heading" class="font-heading text-lg font-medium tracking-tight">Workspace</h2>
+			<p class="text-sm leading-6 text-muted-foreground">
+				Personal config, habits, and small systems I keep refining.
+			</p>
+		</div>
+
+		<ul class="divide-y divide-border border-y border-border">
+			{workspace.map((item) => (
+				<li>
+					<a
+						href={item.href}
+						class="group flex items-start justify-between gap-6 py-3 text-sm"
+						target="_blank"
+						rel="noreferrer"
+					>
+						<span class="space-y-1.5">
+							<span class="block font-medium text-foreground group-hover:underline group-hover:underline-offset-4">
+								{item.name}
+							</span>
+							<span class="block leading-6 text-muted-foreground">{item.description}</span>
+						</span>
+					</a>
+				</li>
+			))}
+		</ul>
+	</section>
+</Layout>
