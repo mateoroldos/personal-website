@@ -179,4 +179,4 @@ In case any of this was useful, here are some tools that made my life easier wit
 
 ### Repo
 
-All of these ideas live in a template I'm creating. It's an opinionated TypeScript repo whose single goal is to be highly optimized for agentic development. Check it at [effect-template](https://github.com/mateoroldos).
+All of these ideas live in a template I'm creating. It's an opinionated TypeScript repo whose single goal is to be highly optimized for agentic development. Check it at [effect-forge](https://github.com/mateoroldos/effect-forge).
