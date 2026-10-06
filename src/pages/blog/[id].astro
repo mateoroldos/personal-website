@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import ArrowUUpLeftIcon from "phosphor-svelte/lib/ArrowUUpLeftIcon";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -16,11 +17,14 @@ const { Content } = await render(post);
 ---
 
 <Layout title={`${post.data.title} | mateoroldos`} description={post.data.description}>
-	<a href="/" class="self-start text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground">back</a>
+	<a href="/" class="inline-flex items-center gap-1 self-start text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground">
+		<ArrowUUpLeftIcon size="1em" weight="regular" class="shrink-0" aria-hidden="true" />
+		back
+	</a>
 
 	<article class="mt-12 min-w-0 space-y-12">
 		<header class="space-y-4">
-			<h1 class="text-4xl font-normal leading-tight tracking-tight sm:text-5xl">{post.data.title}</h1>
+			<h1 class="text-3xl font-normal leading-tight tracking-tight sm:text-4xl">{post.data.title}</h1>
 			<p class="text-xl leading-relaxed text-muted-foreground">{post.data.description}</p>
 			<time datetime={post.data.pubDate.toISOString()} class="block text-sm text-muted-foreground">
 				{post.data.pubDate.toLocaleDateString("en", {

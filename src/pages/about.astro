@@ -1,4 +1,5 @@
 ---
+import ArrowUUpLeftIcon from "phosphor-svelte/lib/ArrowUUpLeftIcon";
 import Layout from "../layouts/Layout.astro";
 
 const experience = [
@@ -34,11 +35,14 @@ const experience = [
 ---
 
 <Layout title="About | mateoroldos" description="Mateo Roldos, a software developer in Montevideo, Uruguay, with a background in industrial design.">
-	<a href="/" class="self-start text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground">back</a>
+	<a href="/" class="inline-flex items-center gap-1 self-start text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground">
+		<ArrowUUpLeftIcon size="1em" weight="regular" class="shrink-0" aria-hidden="true" />
+		back
+	</a>
 
 	<article class="mt-12 min-w-0 space-y-12">
 		<header class="space-y-4">
-			<h1 class="text-4xl font-normal leading-tight tracking-tight sm:text-5xl">About</h1>
+			<h1 class="text-3xl font-normal leading-tight tracking-tight sm:text-4xl">About</h1>
 			<p class="text-lg leading-relaxed">I’m Mateo Roldos, a self-taught software developer in Montevideo, Uruguay, with a background in industrial design.</p>
 			<p class="text-lg leading-relaxed">When I’m not coding, I’m playing football.</p>
 		</header>
