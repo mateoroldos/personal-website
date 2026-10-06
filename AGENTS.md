@@ -30,6 +30,8 @@ Read [COMPASS.md](COMPASS.md) before product or content-structure decisions and
 
 ## Verification
 
+- For styling changes, run `bun run lint`. It checks Astro class usage against the
+  theme; semantic typography roles still require review against [DESIGN.md](DESIGN.md).
 - For docs, check commands, local links, and agreement with the implementation.
 - For content, routing, configuration, or rendering changes, run `bun run build`.
   It validates collection data and generates production pages; it is not a full

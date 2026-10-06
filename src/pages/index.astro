@@ -72,7 +72,7 @@ const experience = [
 ---
 
 <Layout>
-	<header class="space-y-8">
+	<header class="space-y-6">
 		<a
 			href="/"
 			class="inline-flex size-14 overflow-hidden rounded-full border border-border bg-card"
@@ -88,37 +88,37 @@ const experience = [
 		</a>
 
 		<div class="space-y-3">
-			<h1 class="font-serif text-lg font-medium tracking-tight text-foreground">
+			<h1 class="text-page-title text-foreground sm:text-page-title-lg">
 				Mateo Roldos
 			</h1>
-      <p class="max-w-xl text-sm leading-6 text-muted-foreground">
+      <p class="max-w-xl text-intro text-muted-foreground">
         Software developer from Montevideo, Uruguay.
       </p>
-			<p class="max-w-xl text-sm leading-6 text-foreground">
+			<p class="max-w-xl text-intro text-foreground">
         Self-taught developer with a background in industrial design. I build for the web with a sharp eye for product and design. When I'm not coding, I'm playing football.
 			</p>
 		</div>
 	</header>
 
 	<section class="mt-14 space-y-4" aria-labelledby="blog-heading">
-		<h2 id="blog-heading" class="font-serif text-lg font-medium tracking-tight">Blog</h2>
+		<h2 id="blog-heading" class="text-section-title">Blog</h2>
 
-		<ul class="divide-y divide-border border-y border-border">
+		<ul>
 			{posts.map((post) => (
 				<li>
-				<a href={`/blog/${post.id}/`} class="group block py-3 text-sm">
-					<span class="space-y-1.5">
-						<span class="block font-medium text-foreground group-hover:underline group-hover:underline-offset-4">
+				<a href={`/blog/${post.id}/`} class="group block py-4">
+					<span class="block space-y-1.5">
+						<span class="block text-entry-title text-foreground underline decoration-border underline-offset-4 group-hover:decoration-current">
 							{post.data.title}
 						</span>
-						<time datetime={post.data.pubDate.toISOString()} class="block text-xs text-muted-foreground">
+						<span class="block text-description text-muted-foreground">{post.data.description}</span>
+						<time datetime={post.data.pubDate.toISOString()} class="block text-meta text-muted-foreground">
 							{post.data.pubDate.toLocaleDateString("en", {
 								month: "short",
 								day: "2-digit",
 								year: "numeric",
 							})}
 						</time>
-						<span class="block leading-6 text-muted-foreground">{post.data.description}</span>
 					</span>
 				</a>
 				</li>
@@ -128,26 +128,26 @@ const experience = [
 
 	<section class="mt-14 space-y-4" aria-labelledby="projects-heading">
 		<div class="space-y-1">
-			<h2 id="projects-heading" class="font-serif text-lg font-medium tracking-tight">Open Source</h2>
-			<p class="text-sm leading-6 text-muted-foreground">
+			<h2 id="projects-heading" class="text-section-title">Open Source</h2>
+			<p class="text-description text-muted-foreground">
 				Some open source projects I feel proud of.
 			</p>
 		</div>
 
-		<ul class="divide-y divide-border border-y border-border">
+		<ul>
 			{projects.map((project) => (
 				<li>
 					<a
 						href={project.href}
-						class="group flex items-start justify-between gap-6 py-3 text-sm"
+						class="group block py-4"
 						target="_blank"
 						rel="noreferrer"
 					>
-						<span class="space-y-1.5">
-							<span class="block font-medium text-foreground group-hover:underline group-hover:underline-offset-4">
+						<span class="block space-y-1.5">
+							<span class="block text-entry-title text-foreground underline decoration-border underline-offset-4 group-hover:decoration-current">
 								{project.name}
 							</span>
-							<span class="block leading-6 text-muted-foreground">{project.description}</span>
+							<span class="block text-description text-muted-foreground">{project.description}</span>
 						</span>
 					</a>
 				</li>
@@ -156,30 +156,30 @@ const experience = [
 	</section>
 
 	<section class="mt-14 space-y-4" aria-labelledby="experience-heading">
-		<h2 id="experience-heading" class="font-serif text-lg font-medium tracking-tight">Experience</h2>
+		<h2 id="experience-heading" class="text-section-title">Experience</h2>
 
-		<ul class="divide-y divide-border border-y border-border">
+		<ul>
 			{experience.map((item) => (
 				<li>
 					<a
 						href={item.href ?? undefined}
-						class:list={["block py-3 text-sm", item.href && "group"]}
+						class:list={["block py-4", item.href && "group"]}
 						target={item.href ? "_blank" : undefined}
 						rel={item.href ? "noreferrer" : undefined}
 					>
-						<span class="space-y-1.5">
+						<span class="block space-y-1.5">
 							<span
 								class:list={[
-									"block font-medium text-foreground",
-									item.href && "group-hover:underline group-hover:underline-offset-4",
+									"block text-entry-title text-foreground",
+									item.href && "underline decoration-border underline-offset-4 group-hover:decoration-current",
 								]}
 							>
 								{item.name}
 							</span>
-							<span class="block text-xs text-muted-foreground">
+							<span class="block text-meta text-muted-foreground">
 								{item.years}
 							</span>
-							<span class="block leading-6 text-muted-foreground">{item.description}</span>
+							<span class="block text-description text-muted-foreground">{item.description}</span>
 						</span>
 					</a>
 				</li>
@@ -189,26 +189,26 @@ const experience = [
 
 	<section class="mt-14 space-y-4" aria-labelledby="workspace-heading">
 		<div class="space-y-1">
-			<h2 id="workspace-heading" class="font-serif text-lg font-medium tracking-tight">Workspace</h2>
-			<p class="text-sm leading-6 text-muted-foreground">
+			<h2 id="workspace-heading" class="text-section-title">Workspace</h2>
+			<p class="text-description text-muted-foreground">
 				Personal config, habits, and small systems I keep refining.
 			</p>
 		</div>
 
-		<ul class="divide-y divide-border border-y border-border">
+		<ul>
 			{workspace.map((item) => (
 				<li>
 					<a
 						href={item.href}
-						class="group flex items-start justify-between gap-6 py-3 text-sm"
+						class="group block py-4"
 						target="_blank"
 						rel="noreferrer"
 					>
-						<span class="space-y-1.5">
-							<span class="block font-medium text-foreground group-hover:underline group-hover:underline-offset-4">
+						<span class="block space-y-1.5">
+							<span class="block text-entry-title text-foreground underline decoration-border underline-offset-4 group-hover:decoration-current">
 								{item.name}
 							</span>
-							<span class="block leading-6 text-muted-foreground">{item.description}</span>
+							<span class="block text-description text-muted-foreground">{item.description}</span>
 						</span>
 					</a>
 				</li>

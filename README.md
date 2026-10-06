@@ -21,6 +21,7 @@ Open the local URL reported by the server (normally `http://localhost:4321`).
 
 | Command | Purpose |
 | --- | --- |
+| `bun run lint` | Check Astro classes against the theme |
 | `bun run astro dev status` | Check the background server |
 | `bun run astro dev logs` | Read its logs |
 | `bun run astro dev stop` | Stop it |

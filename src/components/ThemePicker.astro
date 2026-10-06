@@ -1,0 +1,30 @@
+---
+import MonitorIcon from "phosphor-svelte/lib/MonitorIcon";
+import SunIcon from "phosphor-svelte/lib/SunIcon";
+import MoonIcon from "phosphor-svelte/lib/MoonIcon";
+
+const themes = [
+	{ value: "system", label: "System", Icon: MonitorIcon },
+	{ value: "light", label: "Light", Icon: SunIcon },
+	{ value: "dark", label: "Dark", Icon: MoonIcon },
+];
+---
+
+<fieldset class="theme-picker flex-wrap gap-1 sm:ml-auto">
+	<legend class="sr-only">Colour theme</legend>
+	{themes.map(({ value, label, Icon }) => (
+		<label class="flex min-h-11 cursor-pointer items-center gap-1.5 px-2 hover:text-foreground">
+			<input class="sr-only" type="radio" name="theme" value={value} checked={value === "system"} />
+			<Icon size="1em" weight="regular" aria-hidden="true" />
+			<span>{label}</span>
+		</label>
+	))}
+</fieldset>
+
+<style>
+	.theme-picker { display: none; }
+	:global(html[data-theme]) .theme-picker { display: flex; }
+	label:has(input:checked) { color: var(--foreground); }
+	label:has(input:checked) span { text-decoration: underline; text-underline-offset: 0.25em; }
+	label:has(input:focus-visible) { outline: 2px solid var(--ring); outline-offset: 2px; }
+</style>

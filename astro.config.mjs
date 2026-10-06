@@ -9,15 +9,16 @@ import { satteri } from '@astrojs/markdown-satteri';
 
 import { externalLinks } from './src/markdown/external-links.js';
 
-import { cendreShiki } from './src/markdown/cendre-shiki.js';
-
 // https://astro.build/config
 export default defineConfig({
   integrations: [svelte()],
 
   markdown: {
     processor: satteri({ hastPlugins: [externalLinks] }),
-    shikiConfig: { theme: cendreShiki },
+    shikiConfig: {
+      themes: { light: 'github-light', dark: 'github-dark' },
+      defaultColor: 'light-dark()',
+    },
   },
 
   vite: {
