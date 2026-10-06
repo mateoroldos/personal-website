@@ -8,7 +8,7 @@ Document-like and content-first, with room for personality.
 - Let content lead; keep navigation and metadata quiet.
 - Let Markdown elements carry the page: paragraphs, headings, lists, quotes, and code.
 - Build hierarchy with spacing and restrained type. Use rules only for meaningful breaks.
-- Set article text at 20px with 1.6 line-height and a measure up to 65ch.
+- Keep article text comfortably sized and its line length suited to reading.
   Give headings more space above than below; keep paragraphs closer together.
 - Contain code and image overflow on narrow screens; keep enlarged text usable.
 - Make links recognizable, focus visible, and secondary text readable.
@@ -24,10 +24,8 @@ Dark mode uses neutral charcoal surfaces and soft light text. Default to the dev
 preference; offer System, Light, and Dark in the footer and remember the selection.
 
 Newsreader carries headings, body, navigation, and metadata; IBM Plex Mono is for code.
-Use the named typography roles in the theme for titles, introductions, descriptions,
-reading text, and metadata. Roles own size, leading, weight, and tracking; change
-them in the theme rather than adding page-level overrides or arbitrary values.
-Keep layout on Tailwind's spacing scale and colours on shadcn's semantic tokens.
+Prefer Tailwind's existing scale and shadcn's semantic tokens. Extend the theme only
+for a demonstrated need; do not create aliases merely to repackage one-off values.
 Separate entries with space; place article dates after descriptions.
 Use regular-weight Phosphor icons in the text colour, rendered as static SVG.
 Pair controls with text labels; keep decorative icons hidden from assistive technology.

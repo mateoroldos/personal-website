@@ -88,31 +88,31 @@ const experience = [
 		</a>
 
 		<div class="space-y-3">
-			<h1 class="text-page-title text-foreground sm:text-page-title-lg">
+			<h1 class="text-4xl font-normal leading-tight tracking-tight text-foreground sm:text-5xl">
 				Mateo Roldos
 			</h1>
-      <p class="max-w-xl text-intro text-muted-foreground">
+      <p class="max-w-xl text-xl leading-relaxed text-muted-foreground">
         Software developer from Montevideo, Uruguay.
       </p>
-			<p class="max-w-xl text-intro text-foreground">
+			<p class="max-w-xl text-xl leading-relaxed text-foreground">
         Self-taught developer with a background in industrial design. I build for the web with a sharp eye for product and design. When I'm not coding, I'm playing football.
 			</p>
 		</div>
 	</header>
 
 	<section class="mt-14 space-y-4" aria-labelledby="blog-heading">
-		<h2 id="blog-heading" class="text-section-title">Blog</h2>
+		<h2 id="blog-heading" class="text-3xl font-medium leading-tight tracking-tight">Blog</h2>
 
 		<ul>
 			{posts.map((post) => (
 				<li>
 				<a href={`/blog/${post.id}/`} class="group block py-4">
 					<span class="block space-y-1.5">
-						<span class="block text-entry-title text-foreground underline decoration-border underline-offset-4 group-hover:decoration-current">
+						<span class="block text-2xl font-medium leading-snug text-foreground underline decoration-border underline-offset-4 group-hover:decoration-current">
 							{post.data.title}
 						</span>
-						<span class="block text-description text-muted-foreground">{post.data.description}</span>
-						<time datetime={post.data.pubDate.toISOString()} class="block text-meta text-muted-foreground">
+						<span class="block text-lg leading-relaxed text-muted-foreground">{post.data.description}</span>
+						<time datetime={post.data.pubDate.toISOString()} class="block text-sm text-muted-foreground">
 							{post.data.pubDate.toLocaleDateString("en", {
 								month: "short",
 								day: "2-digit",
@@ -128,8 +128,8 @@ const experience = [
 
 	<section class="mt-14 space-y-4" aria-labelledby="projects-heading">
 		<div class="space-y-1">
-			<h2 id="projects-heading" class="text-section-title">Open Source</h2>
-			<p class="text-description text-muted-foreground">
+			<h2 id="projects-heading" class="text-3xl font-medium leading-tight tracking-tight">Open Source</h2>
+			<p class="text-lg leading-relaxed text-muted-foreground">
 				Some open source projects I feel proud of.
 			</p>
 		</div>
@@ -144,10 +144,10 @@ const experience = [
 						rel="noreferrer"
 					>
 						<span class="block space-y-1.5">
-							<span class="block text-entry-title text-foreground underline decoration-border underline-offset-4 group-hover:decoration-current">
+							<span class="block text-2xl font-medium leading-snug text-foreground underline decoration-border underline-offset-4 group-hover:decoration-current">
 								{project.name}
 							</span>
-							<span class="block text-description text-muted-foreground">{project.description}</span>
+							<span class="block text-lg leading-relaxed text-muted-foreground">{project.description}</span>
 						</span>
 					</a>
 				</li>
@@ -156,7 +156,7 @@ const experience = [
 	</section>
 
 	<section class="mt-14 space-y-4" aria-labelledby="experience-heading">
-		<h2 id="experience-heading" class="text-section-title">Experience</h2>
+		<h2 id="experience-heading" class="text-3xl font-medium leading-tight tracking-tight">Experience</h2>
 
 		<ul>
 			{experience.map((item) => (
@@ -170,16 +170,16 @@ const experience = [
 						<span class="block space-y-1.5">
 							<span
 								class:list={[
-									"block text-entry-title text-foreground",
+									"block text-2xl font-medium leading-snug text-foreground",
 									item.href && "underline decoration-border underline-offset-4 group-hover:decoration-current",
 								]}
 							>
 								{item.name}
 							</span>
-							<span class="block text-meta text-muted-foreground">
+							<span class="block text-sm text-muted-foreground">
 								{item.years}
 							</span>
-							<span class="block text-description text-muted-foreground">{item.description}</span>
+							<span class="block text-lg leading-relaxed text-muted-foreground">{item.description}</span>
 						</span>
 					</a>
 				</li>
@@ -189,8 +189,8 @@ const experience = [
 
 	<section class="mt-14 space-y-4" aria-labelledby="workspace-heading">
 		<div class="space-y-1">
-			<h2 id="workspace-heading" class="text-section-title">Workspace</h2>
-			<p class="text-description text-muted-foreground">
+			<h2 id="workspace-heading" class="text-3xl font-medium leading-tight tracking-tight">Workspace</h2>
+			<p class="text-lg leading-relaxed text-muted-foreground">
 				Personal config, habits, and small systems I keep refining.
 			</p>
 		</div>
@@ -205,10 +205,10 @@ const experience = [
 						rel="noreferrer"
 					>
 						<span class="block space-y-1.5">
-							<span class="block text-entry-title text-foreground underline decoration-border underline-offset-4 group-hover:decoration-current">
+							<span class="block text-2xl font-medium leading-snug text-foreground underline decoration-border underline-offset-4 group-hover:decoration-current">
 								{item.name}
 							</span>
-							<span class="block text-description text-muted-foreground">{item.description}</span>
+							<span class="block text-lg leading-relaxed text-muted-foreground">{item.description}</span>
 						</span>
 					</a>
 				</li>
