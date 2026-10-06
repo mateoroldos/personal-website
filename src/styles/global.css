@@ -12,9 +12,10 @@
 	color-scheme: light dark;
 	--radius: 0.25rem;
 
-	--background: light-dark(#faf9f7, #181818);
-	--foreground: light-dark(#262626, #e8e8e6);
-	--card: light-dark(#f0efed, #222222);
+	--background: light-dark(#faf9f7, #1c1b19);
+	--foreground: light-dark(#262626, #efebe4);
+	--body-foreground: light-dark(#343433, #e9e5de);
+	--card: light-dark(#f0efed, #252421);
 	--card-foreground: var(--foreground);
 	--popover: var(--background);
 	--popover-foreground: var(--foreground);
@@ -23,11 +24,11 @@
 	--secondary: var(--card);
 	--secondary-foreground: var(--foreground);
 	--muted: var(--card);
-	--muted-foreground: light-dark(#686868, #a3a3a3);
+	--muted-foreground: light-dark(#686868, #b8b3ab);
 	--accent: var(--card);
 	--accent-foreground: var(--foreground);
 	--destructive: light-dark(#b83f6a, #ef9ab6);
-	--border: light-dark(#d8d8d6, #3e3e3e);
+	--border: light-dark(#d8d8d6, #34322f);
 	--input: var(--border);
 	--ring: var(--primary);
 }
@@ -43,6 +44,7 @@
 @theme inline {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
+	--color-body-foreground: var(--body-foreground);
 	--color-card: var(--card);
 	--color-card-foreground: var(--card-foreground);
 	--color-popover: var(--popover);
@@ -74,7 +76,10 @@
 		@apply border-border outline-ring/50;
 	}
 	body {
-		@apply bg-background text-foreground;
+		@apply bg-background text-body-foreground;
+	}
+	:is(h1, h2, h3, h4, strong) {
+		@apply text-foreground;
 	}
 	html {
 		@apply font-serif;
@@ -87,7 +92,7 @@
 }
 
 .prose {
-	--tw-prose-body: var(--foreground);
+	--tw-prose-body: var(--body-foreground);
 	--tw-prose-headings: var(--foreground);
 	--tw-prose-lead: var(--muted-foreground);
 	--tw-prose-links: var(--primary);

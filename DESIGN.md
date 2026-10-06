@@ -18,9 +18,11 @@ Document-like and content-first, with room for personality.
 
 [src/styles/global.css](src/styles/global.css) owns shared tokens and prose styles.
 Use soft off-white surfaces, near-black text, and readable neutral grey metadata.
+Set body text one step below headings, at about APCA Lc 95 in light and Lc 90 in dark,
+at or above the Lc 90 preferred level for body text. Keep metadata at Lc 60 or more.
 Keep links monochrome and underlined. Retain restrained syntax colour for code;
 keep inline code free of decorative chips.
-Dark mode uses neutral charcoal surfaces and soft light text. Default to the device
+Dark mode uses warm charcoal surfaces and soft light text. Default to the device
 preference; offer System, Light, and Dark in the footer and remember the selection.
 
 Newsreader carries headings, body, navigation, and metadata; IBM Plex Mono is for code.
