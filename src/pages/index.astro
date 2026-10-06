@@ -1,228 +1,135 @@
 ---
 import { getCollection } from "astro:content";
 import { Image, getImage } from "astro:assets";
+import ArrowUpRightIcon from "phosphor-svelte/lib/ArrowUpRightIcon";
 import avatar from "../assets/avatar.png";
 import avatarNight from "../assets/avatar-night.png";
 import Layout from "../layouts/Layout.astro";
 
-const nightAvatar = await getImage({ src: avatarNight, width: 56, densities: [1, 2, 3], format: "webp" });
+const nightAvatar = await getImage({ src: avatarNight, width: 48, densities: [1, 2, 3], format: "webp" });
 
 const posts = (
 	await getCollection("blog", ({ data }) => import.meta.env.DEV || !data.draft)
 ).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+).map((post) => {
+	const wordCount = post.body?.match(/\S+/g)?.length ?? 0;
+	const readingMinutes = Math.max(1, Math.ceil(wordCount / 200));
+
+	return { ...post, readingMinutes };
+});
 
 const projects = [
 	{
 		name: "md.uy",
-		description: "A minimal peer-to-peer Markdown editor that syncs using WebRTC.",
+		description: "Write Markdown together, browser to browser.",
 		href: "https://md.uy/",
 	},
 	{
 		name: "tokenbase",
-		description: "A design token manager for turning visual decisions into exportable code.",
+		description: "Manage and export design tokens.",
 		href: "https://token-base.com/",
 	},
 	{
 		name: "gitboard",
-    description: "An interactive canvas for making GitHub repos feel less static.",
+		description: "Explore GitHub repos on a canvas.",
 		href: "https://gitboard-app.netlify.app/",
-	},
-];
-
-const workspace = [
-	{
-		name: "dotfiles",
-		description: "My terminal, nvim, and machine setup.",
-		href: "https://github.com/mateoroldos/dotfiles",
-	},
-	{
-		name: "agents",
-		description: "Personal collection of prompts and skills.",
-		href: "https://github.com/mateoroldos/agents",
-	},
-];
-
-const experience = [
-	{
-		name: "Independent work",
-		years: "2026-now",
-		description: "Taking time to dive deep into Effect.ts and AI while building tools for agents, visual tutorials, and Discord communities.",
-	},
-	{
-		name: "Numinous Labs",
-		years: "2025-2026",
-		description: "Designed and built AI tools for prediction markets and decision workflows.",
-		href: "https://numinouslabs.io/",
-	},
-	{
-		name: "Flipzen",
-		years: "2024",
-		description: "Built product surfaces for AI-assisted compliance work.",
-		href: "https://flipzen.com/",
-	},
-	{
-		name: "Emerald Labs",
-		years: "2022-2024",
-		description: "Joined my main client full time to build education and tooling around Flow Blockchain.",
-		href: "https://academy.ecdao.org/",
-	},
-	{
-		name: "Independent developer",
-		years: "2019-2022",
-		description: "Started studying web development and freelancing for local companies.",
 	},
 ];
 ---
 
-<Layout>
-	<header class="space-y-6">
-		<a
-			href="/"
-			class="inline-flex size-14 overflow-hidden rounded-full border border-border bg-card"
-			aria-label="mateoroldos home"
-		>
-			<picture>
+<Layout
+	title="Mateo Roldos — Making software, carefully."
+	description="I’m Mateo, a designer and developer. AI makes software abundant. I’m interested in what stays scarce: judgment, taste, and the enduring principles of design and engineering."
+>
+	<header class="space-y-12">
+		<a href="/" class="inline-flex items-center gap-3 text-xl" aria-label="Mateo Roldos home">
+			<picture class="size-12 shrink-0 overflow-hidden rounded-full border border-border bg-card">
 				<source data-avatar-night media="(prefers-color-scheme: dark)" srcset={nightAvatar.srcSet.attribute} type="image/webp" />
 				<Image
 					src={avatar}
-					alt="mateoroldos"
+					alt=""
 					class="size-full object-cover"
-					width={56}
-					height={56}
+					width={48}
+					height={48}
 					densities={[1, 2, 3]}
 					loading="eager"
 				/>
 			</picture>
+			<span>Mateo Roldos</span>
 		</a>
 
 		<div class="space-y-3">
 			<h1 class="text-3xl font-normal leading-tight tracking-tight text-foreground sm:text-4xl">
-				Mateo Roldos
+				Making software, carefully.
 			</h1>
-      <p class="max-w-xl text-lg leading-relaxed text-muted-foreground">
-        Software developer from Montevideo, Uruguay.
-      </p>
-			<p class="max-w-xl text-lg leading-relaxed text-foreground">
-        Self-taught developer with a background in industrial design. I build for the web with a sharp eye for product and design. When I'm not coding, I'm playing football.
+			<p class="text-lg leading-relaxed">
+				I’m Mateo, a designer and developer. AI makes software abundant. I’m interested in what stays scarce: judgment, taste, and the enduring principles of design and engineering.
+			</p>
+			<p class="text-lg leading-relaxed">
+				Currently building <strong class="font-medium">Moku.</strong>
 			</p>
 		</div>
 	</header>
 
-	<section class="mt-14 space-y-4" aria-labelledby="blog-heading">
-		<h2 id="blog-heading" class="text-2xl font-medium leading-tight tracking-tight">Blog</h2>
+	<section class="mt-16 space-y-4 sm:mt-20" aria-labelledby="writing-heading">
+		<h2 id="writing-heading" class="text-2xl font-medium leading-tight tracking-tight">Writing</h2>
 
 		<ul>
 			{posts.map((post) => (
 				<li>
-				<a href={`/blog/${post.id}/`} class="group block py-4">
-					<span class="block space-y-1.5">
-						<span class="block text-xl font-medium leading-snug text-foreground underline decoration-border underline-offset-4 group-hover:decoration-current">
-							{post.data.title}
+					<a href={`/blog/${post.id}/`} class="group block py-4">
+						<span class="block space-y-1.5">
+							<span class="block text-xl font-medium leading-snug text-foreground underline decoration-border underline-offset-4 group-hover:decoration-current">
+								{post.data.title}
+							</span>
+							<span class="flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
+								<time datetime={post.data.pubDate.toISOString()}>
+									{post.data.pubDate.toLocaleDateString("en", {
+										month: "long",
+										year: "numeric",
+										timeZone: "UTC",
+									})}
+								</time>
+								<span aria-hidden="true">·</span>
+								<span>~{post.readingMinutes} min read</span>
+							</span>
 						</span>
-						<span class="block text-base leading-relaxed text-muted-foreground">{post.data.description}</span>
-						<time datetime={post.data.pubDate.toISOString()} class="block text-sm text-muted-foreground">
-							{post.data.pubDate.toLocaleDateString("en", {
-								month: "short",
-								day: "2-digit",
-								year: "numeric",
-							})}
-						</time>
-					</span>
-				</a>
+					</a>
 				</li>
 			))}
 		</ul>
 	</section>
 
-	<section class="mt-14 space-y-4" aria-labelledby="projects-heading">
-		<div class="space-y-1">
-			<h2 id="projects-heading" class="text-2xl font-medium leading-tight tracking-tight">Open Source</h2>
-			<p class="text-base leading-relaxed text-muted-foreground">
-				Some open source projects I feel proud of.
-			</p>
-		</div>
+	<section class="mt-16 space-y-4 sm:mt-20" aria-labelledby="projects-heading">
+		<h2 id="projects-heading" class="text-2xl font-medium leading-tight tracking-tight">Software</h2>
 
-		<ul>
+		<ul class="divide-y divide-border rounded-lg border border-border">
 			{projects.map((project) => (
 				<li>
-					<a
-						href={project.href}
-						class="group block py-4"
-						target="_blank"
-						rel="noreferrer"
-					>
-						<span class="block space-y-1.5">
-							<span class="block text-xl font-medium leading-snug text-foreground underline decoration-border underline-offset-4 group-hover:decoration-current">
+					<a href={project.href} class="group flex items-center gap-4 rounded-lg px-4 py-4 hover:bg-card" target="_blank" rel="noreferrer">
+						<span class="flex min-w-0 flex-1 flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
+							<span class="text-lg font-medium leading-snug text-foreground underline decoration-border underline-offset-4 group-hover:decoration-current sm:w-24 sm:shrink-0">
 								{project.name}
 							</span>
-							<span class="block text-base leading-relaxed text-muted-foreground">{project.description}</span>
+							<span class="text-sm leading-relaxed text-muted-foreground">{project.description}</span>
 						</span>
+						<ArrowUpRightIcon size="1em" weight="regular" class="shrink-0 text-muted-foreground group-hover:text-foreground" aria-hidden="true" />
 					</a>
 				</li>
 			))}
 		</ul>
 	</section>
 
-	<section class="mt-14 space-y-4" aria-labelledby="experience-heading">
-		<h2 id="experience-heading" class="text-2xl font-medium leading-tight tracking-tight">Experience</h2>
-
-		<ul>
-			{experience.map((item) => (
-				<li>
-					<a
-						href={item.href ?? undefined}
-						class:list={["block py-4", item.href && "group"]}
-						target={item.href ? "_blank" : undefined}
-						rel={item.href ? "noreferrer" : undefined}
-					>
-						<span class="block space-y-1.5">
-							<span
-								class:list={[
-									"block text-xl font-medium leading-snug text-foreground",
-									item.href && "underline decoration-border underline-offset-4 group-hover:decoration-current",
-								]}
-							>
-								{item.name}
-							</span>
-							<span class="block text-sm text-muted-foreground">
-								{item.years}
-							</span>
-							<span class="block text-base leading-relaxed text-muted-foreground">{item.description}</span>
-						</span>
-					</a>
-				</li>
-			))}
-		</ul>
-	</section>
-
-	<section class="mt-14 space-y-4" aria-labelledby="workspace-heading">
-		<div class="space-y-1">
-			<h2 id="workspace-heading" class="text-2xl font-medium leading-tight tracking-tight">Workspace</h2>
-			<p class="text-base leading-relaxed text-muted-foreground">
-				Personal config, habits, and small systems I keep refining.
+	<section class="mt-16 space-y-4 sm:mt-20" aria-labelledby="behind-heading">
+		<h2 id="behind-heading" class="text-2xl font-medium leading-tight tracking-tight">Behind the work</h2>
+		<div class="space-y-3 text-lg leading-relaxed">
+			<p>I’m a software developer in Montevideo, Uruguay, with a background in industrial design.</p>
+			<p>
+				My <a class="underline underline-offset-4" href="https://github.com/mateoroldos/agents" target="_blank" rel="noreferrer">agent setup</a>{" "}
+				and <a class="underline underline-offset-4" href="https://github.com/mateoroldos/dotfiles" target="_blank" rel="noreferrer">dotfiles</a> are public too.
 			</p>
+			<p>Have a question or a different take? <a class="underline underline-offset-4" href="mailto:mateoroldos19@gmail.com">Write to me.</a></p>
 		</div>
-
-		<ul>
-			{workspace.map((item) => (
-				<li>
-					<a
-						href={item.href}
-						class="group block py-4"
-						target="_blank"
-						rel="noreferrer"
-					>
-						<span class="block space-y-1.5">
-							<span class="block text-xl font-medium leading-snug text-foreground underline decoration-border underline-offset-4 group-hover:decoration-current">
-								{item.name}
-							</span>
-							<span class="block text-base leading-relaxed text-muted-foreground">{item.description}</span>
-						</span>
-					</a>
-				</li>
-			))}
-		</ul>
 	</section>
 </Layout>

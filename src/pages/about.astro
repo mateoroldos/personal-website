@@ -1,0 +1,63 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const experience = [
+	{
+		name: "Independent work",
+		years: "2026-now",
+		description: "Taking time to dive deep into Effect.ts and AI while building tools for agents, visual tutorials, and Discord communities.",
+	},
+	{
+		name: "Numinous Labs",
+		years: "2025-2026",
+		description: "Designed and built AI tools for prediction markets and decision workflows.",
+		href: "https://numinouslabs.io/",
+	},
+	{
+		name: "Flipzen",
+		years: "2024",
+		description: "Built product surfaces for AI-assisted compliance work.",
+		href: "https://flipzen.com/",
+	},
+	{
+		name: "Emerald Labs",
+		years: "2022-2024",
+		description: "Joined my main client full time to build education and tooling around Flow Blockchain.",
+		href: "https://academy.ecdao.org/",
+	},
+	{
+		name: "Independent developer",
+		years: "2019-2022",
+		description: "Started studying web development and freelancing for local companies.",
+	},
+];
+---
+
+<Layout title="About | mateoroldos" description="Mateo Roldos, a software developer in Montevideo, Uruguay, with a background in industrial design.">
+	<a href="/" class="self-start text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground">back</a>
+
+	<article class="mt-12 min-w-0 space-y-12">
+		<header class="space-y-4">
+			<h1 class="text-4xl font-normal leading-tight tracking-tight sm:text-5xl">About</h1>
+			<p class="text-lg leading-relaxed">I’m Mateo Roldos, a self-taught software developer in Montevideo, Uruguay, with a background in industrial design.</p>
+			<p class="text-lg leading-relaxed">When I’m not coding, I’m playing football.</p>
+		</header>
+
+		<section class="space-y-6" aria-labelledby="experience-heading">
+			<h2 id="experience-heading" class="text-2xl font-medium leading-tight tracking-tight">Experience</h2>
+			<ul class="space-y-8">
+				{experience.map((item) => (
+					<li class="space-y-1.5">
+						<h3 class="text-xl font-medium leading-snug">
+							{item.href ? (
+								<a href={item.href} class="underline decoration-border underline-offset-4 hover:decoration-current" target="_blank" rel="noreferrer">{item.name}</a>
+							) : item.name}
+						</h3>
+						<p class="text-sm text-muted-foreground">{item.years}</p>
+						<p class="text-base leading-relaxed text-muted-foreground">{item.description}</p>
+					</li>
+				))}
+			</ul>
+		</section>
+	</article>
+</Layout>
