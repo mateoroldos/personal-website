@@ -10,13 +10,13 @@ const themes = [
 ];
 ---
 
-<fieldset class="theme-picker flex-wrap gap-1 sm:ml-auto">
+<fieldset class="theme-picker ml-auto rounded-full border border-border p-0.5">
 	<legend class="sr-only">Colour theme</legend>
 	{themes.map(({ value, label, Icon }) => (
-		<label class="flex min-h-11 cursor-pointer items-center gap-1.5 px-2 hover:text-foreground">
+		<label class="flex size-6 cursor-pointer items-center justify-center rounded-full hover:bg-card hover:text-foreground" title={`${label} theme`}>
 			<input class="sr-only" type="radio" name="theme" value={value} checked={value === "system"} />
-			<Icon size="1em" weight="regular" aria-hidden="true" />
-			<span>{label}</span>
+			<Icon size="0.75rem" weight="regular" aria-hidden="true" />
+			<span class="sr-only">{label}</span>
 		</label>
 	))}
 </fieldset>
@@ -24,7 +24,10 @@ const themes = [
 <style>
 	.theme-picker { display: none; }
 	:global(html[data-theme]) .theme-picker { display: flex; }
-	label:has(input:checked) { color: var(--foreground); }
-	label:has(input:checked) span { text-decoration: underline; text-underline-offset: 0.25em; }
+	label:has(input:checked) {
+		color: var(--foreground);
+		background: var(--card);
+		box-shadow: inset 0 0 0 1px var(--border);
+	}
 	label:has(input:focus-visible) { outline: 2px solid var(--ring); outline-offset: 2px; }
 </style>

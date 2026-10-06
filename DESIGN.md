@@ -28,7 +28,7 @@ Prefer Tailwind's existing scale and shadcn's semantic tokens. Extend the theme 
 for a demonstrated need; do not create aliases merely to repackage one-off values.
 Separate entries with space; keep article dates and reading times secondary to titles.
 Use regular-weight Phosphor icons in the text colour, rendered as static SVG.
-Pair controls with text labels; keep decorative icons hidden from assistive technology.
+Give controls accessible text labels; keep decorative icons hidden from assistive technology.
 
 Let photography, diagrams, and playful details earn their place through content.
 Avoid decorative gradients, glass, excessive cards, and futuristic AI imagery.
