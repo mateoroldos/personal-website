@@ -2,6 +2,16 @@
 title: "Notes on agentic coding"
 description: "Seven notes to myself after two years of coding with agents."
 pubDate: 2026-08-20
+tldr:
+  summary: "Agents give the most probable answer, not always the correct one, and they stop thinking once the task works. So I still review the code. These seven old engineering habits keep that review cheap:"
+  points:
+    - "Short loops, small diffs: stop the agent before mistakes compound."
+    - "Type driven development: signatures show what a function returns, how it fails, and what it needs."
+    - "Agree on the shape: I design with types and callstacks; the agent writes the lines."
+    - "Lean on the VCS: every agent turn lands as at least one commit."
+    - "Deterministic checks: the compiler and linter say no before I have to."
+    - "Observability: agents get the tools to debug their own work."
+    - "Work in parallel: win back the speed that slower loops cost."
 ---
 
 I still remember the day a coworker showed me GitHub Copilot. The tool seemed like magic. You wrote code the way you always had, and a smart robot guessed the rest. You simply took the guess or ignored it. A calm assistant that respected your workflow.

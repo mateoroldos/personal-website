@@ -35,6 +35,16 @@ const { Content } = await render(post);
 			</time>
 		</header>
 
+		{post.data.tldr && (
+			<aside aria-labelledby="tldr-heading" class="relative rounded-xl border border-border p-6 text-lg sm:p-8">
+				<h2 id="tldr-heading" class="absolute -top-3 left-4 bg-background px-2 text-sm leading-6 text-muted-foreground sm:left-6">TL;DR</h2>
+				<p class="leading-relaxed">{post.data.tldr.summary}</p>
+				<ol class="mt-4 list-decimal space-y-2 pl-5 leading-relaxed marker:text-muted-foreground">
+					{post.data.tldr.points.map((point) => <li class="pl-1">{point}</li>)}
+				</ol>
+			</aside>
+		)}
+
 		<div class="prose">
 			<Content />
 		</div>
