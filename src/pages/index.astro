@@ -1,12 +1,9 @@
 ---
 import { getCollection } from "astro:content";
-import { Image, getImage } from "astro:assets";
+import { Image } from "astro:assets";
 import ArrowUpRightIcon from "phosphor-svelte/lib/ArrowUpRightIcon";
 import avatar from "../assets/avatar.png";
-import avatarNight from "../assets/avatar-night.png";
 import Layout from "../layouts/Layout.astro";
-
-const nightAvatar = await getImage({ src: avatarNight, width: 48, densities: [1, 2, 3], format: "webp" });
 
 const posts = (
 	await getCollection("blog", ({ data }) => import.meta.env.DEV || !data.draft)
@@ -45,7 +42,6 @@ const projects = [
 	<header class="space-y-12">
 		<a href="/" class="inline-flex items-center gap-3 text-xl" aria-label="Mateo Roldos home">
 			<picture class="size-12 shrink-0 overflow-hidden rounded-full border border-border bg-card">
-				<source data-avatar-night media="(prefers-color-scheme: dark)" srcset={nightAvatar.srcSet.attribute} type="image/webp" />
 				<Image
 					src={avatar}
 					alt=""
