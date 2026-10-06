@@ -1,6 +1,11 @@
 ---
 import { getCollection } from "astro:content";
+import { Image, getImage } from "astro:assets";
+import avatar from "../assets/avatar.png";
+import avatarNight from "../assets/avatar-night.png";
 import Layout from "../layouts/Layout.astro";
+
+const nightAvatar = await getImage({ src: avatarNight, width: 56, densities: [1, 2, 3], format: "webp" });
 
 const posts = (
 	await getCollection("blog", ({ data }) => import.meta.env.DEV || !data.draft)
@@ -78,13 +83,18 @@ const experience = [
 			class="inline-flex size-14 overflow-hidden rounded-full border border-border bg-card"
 			aria-label="mateoroldos home"
 		>
-			<img
-				src="/mateoroldos.jpg"
-				alt="mateoroldos"
-				class="size-full object-cover"
-				width="60"
-				height="60"
-			/>
+			<picture>
+				<source data-avatar-night media="(prefers-color-scheme: dark)" srcset={nightAvatar.srcSet.attribute} type="image/webp" />
+				<Image
+					src={avatar}
+					alt="mateoroldos"
+					class="size-full object-cover"
+					width={56}
+					height={56}
+					densities={[1, 2, 3]}
+					loading="eager"
+				/>
+			</picture>
 		</a>
 
 		<div class="space-y-3">
